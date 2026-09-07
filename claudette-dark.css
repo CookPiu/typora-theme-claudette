@@ -1,0 +1,96 @@
+/*
+ * Claudette Dark - Typora theme
+ *
+ * 在 claudette.css 基础上套用 academy.claude.com / claude.ai 的深色令牌：
+ *   页面 #262625   侧栏 #1f1f1e   浮层 #1a1a19   填充 #34332e / #3a3933
+ *   文字 #f2f0e9 / #b8b6a9 / #9c9a90   分隔线 rgba(255,255,255,.10) 与 .06
+ *   代码高亮取 claude.com 深色代码面板
+ */
+
+@import url("claudette.css");
+
+:root {
+    --bg-primary: #262625;
+    --bg-secondary: #2c2c2a;
+    --bg-sidebar: #1f1f1e;
+    --bg-fill: #34332e;
+    --bg-fill-2: #3a3933;
+    --bg-elevated: #1a1a19;
+    --fg-primary: #f2f0e9;
+    --fg-secondary: #d6d3c8;
+    --fg-tertiary: #b8b6a9;
+    --fg-muted: #9c9a90;
+    --line: rgba(255, 255, 255, 0.10);
+    --line-2: rgba(255, 255, 255, 0.06);
+    --line-strong: rgba(255, 255, 255, 0.20);
+    --accent: #d97757;
+    --accent-interactive: #e6906f;
+    --accent-soft: rgba(217, 119, 87, 0.14);
+    --hover-fill: rgba(255, 255, 255, 0.05);
+    --selected-fill: rgba(255, 255, 255, 0.10);
+    --highlight: rgba(227, 192, 123, 0.32);
+
+    --code-keyword: #ff8d77;
+    --code-string: #e5b07e;
+    --code-number: #e3c07b;
+    --code-fn: #c8a6ff;
+    --code-comment: #8b8b81;
+    --code-type: #8ab4f8;
+    --code-tag: #ff8d77;
+    --code-attr: #e3c07b;
+
+    --shadow-ring: inset 0 0 0 1px var(--line), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-menu: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 8px 24px rgba(0, 0, 0, 0.45);
+    --shadow-dialog: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 16px 48px rgba(0, 0, 0, 0.6);
+
+    --bg-color: var(--bg-primary);
+    --side-bar-bg-color: var(--bg-sidebar);
+    --text-color: var(--fg-primary);
+    --select-text-bg-color: rgba(217, 119, 87, 0.35);
+    --primary-btn-border-color: #f2f0e9;
+    --primary-btn-text-color: #141413;
+    --control-text-color: var(--fg-tertiary);
+    --control-text-hover-color: var(--fg-primary);
+    --window-border: 1px solid var(--line);
+    --active-file-bg-color: var(--selected-fill);
+    --item-hover-bg-color: var(--hover-fill);
+    --rawblock-edit-panel-bd: var(--bg-fill);
+    --search-select-bg-color: rgba(217, 119, 87, 0.45);
+    --search-select-text-color: var(--fg-primary);
+    --meta-content-color: var(--fg-muted);
+    --heading-char-color: #5f5e5a;
+    --md-char-color: #6d6b67;
+    --mermaid-theme: dark;
+}
+
+html { color-scheme: dark; }
+
+/* 深色下把主按钮反转为浅底深字（与 claude.ai 一致） */
+.btn-primary, .btn-primary:focus {
+    background: #f2f0e9;
+    border-color: #f2f0e9;
+    color: #141413;
+}
+.btn-primary:hover { background: #dedcd1; border-color: #dedcd1; }
+
+/* 任务复选框 */
+.md-task-list-item > input { background: var(--bg-fill); border-color: var(--line-strong); }
+.md-task-list-item > input:checked { background: var(--accent-interactive); border-color: var(--accent-interactive); }
+.md-task-list-item > input:checked::after { border-color: #141413; }
+
+/* 语法错误色在深色下提亮 */
+.cm-s-inner .cm-error, .cm-s-inner .cm-negative { color: #ff6159; }
+.CodeMirror-linenumber { color: #6d6b67; }
+::-webkit-scrollbar-thumb:hover { background: #6d6b67; }
+
+/* 打印仍用浅色 */
+@media print {
+    :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f5f4ed;
+        --fg-primary: #141413;
+        --fg-secondary: #52514e;
+        --line: rgba(31, 30, 29, 0.12);
+    }
+    body { background: #fff; color: #141413; }
+}
