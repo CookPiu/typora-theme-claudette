@@ -16,6 +16,9 @@
     --bg-fill: #34332e;
     --bg-fill-2: #3a3933;
     --bg-elevated: #1a1a19;
+    --paper: #2a2a28;
+    --paper-ring: rgba(255, 255, 255, 0.08);
+    --paper-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
     --fg-primary: #f2f0e9;
     --fg-secondary: #d6d3c8;
     --fg-tertiary: #b8b6a9;
@@ -77,6 +80,17 @@ html { color-scheme: dark; }
 .md-task-list-item > input { background: var(--bg-fill); border-color: var(--line-strong); }
 .md-task-list-item > input:checked { background: var(--accent-interactive); border-color: var(--accent-interactive); }
 .md-task-list-item > input:checked::after { border-color: #141413; }
+
+/* 提示框：深色下提亮文字色 */
+#write .md-alert.md-alert-note      { --alert-color: #8ab4f8; --alert-bg: rgba(106, 155, 204, 0.12); --alert-line: rgba(106, 155, 204, 0.35); }
+#write .md-alert.md-alert-tip       { --alert-color: #7fc4ad; --alert-bg: rgba(98, 153, 135, 0.14); --alert-line: rgba(98, 153, 135, 0.35); }
+#write .md-alert.md-alert-important { --alert-color: #b3aee6; --alert-bg: rgba(130, 125, 189, 0.14); --alert-line: rgba(130, 125, 189, 0.35); }
+#write .md-alert.md-alert-warning   { --alert-color: #e3c07b; --alert-bg: rgba(212, 162, 127, 0.14); --alert-line: rgba(212, 162, 127, 0.40); }
+#write .md-alert.md-alert-caution   { --alert-color: #e58aa6; --alert-bg: rgba(196, 102, 134, 0.14); --alert-line: rgba(196, 102, 134, 0.35); }
+
+/* 次级按钮 */
+.btn-default { background: var(--bg-fill); color: var(--fg-secondary); }
+.btn-default:hover { background: var(--bg-fill-2); color: var(--fg-primary); }
 
 /* 语法错误色在深色下提亮 */
 .cm-s-inner .cm-error, .cm-s-inner .cm-negative { color: #ff6159; }

@@ -56,6 +56,9 @@
     --bg-fill: var(--ivory-200);
     --bg-fill-2: var(--ivory-250);
     --bg-elevated: var(--white);
+    --paper: var(--white);
+    --paper-ring: rgba(0, 0, 0, 0.10);
+    --paper-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
     --fg-primary: var(--slate-950);
     --fg-secondary: var(--slate-650);
     --fg-tertiary: var(--slate-550);
@@ -760,7 +763,7 @@ footer.ty-footer {
     top: 50%;
     transform: translate(-50%, -50%);
     padding: 0 0.75em;
-    background: var(--bg-primary);
+    background: var(--paper);
     color: var(--accent);
     font-size: 0.75rem;
     line-height: 1;
@@ -850,14 +853,129 @@ footer.ty-footer {
 .outline-item.select { color: var(--accent-interactive); }
 .sidebar-tab.active { box-shadow: inset 0 -2px 0 var(--accent); }
 
+/* ======================================================================
+ * 锦上添花
+ * 取自 academy.claude.com 的纸张卡片、文档站的提示框、claude.com 的外链箭头
+ * ====================================================================== */
+
+/* 纸张卡片：正文放在一张白纸上，页面底色为米色（academy th-paper / th-page） */
+content { background: var(--bg-primary); scroll-behavior: smooth; }
+#write {
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 0 0 1px var(--paper-ring), var(--paper-shadow);
+    margin: 2rem auto 3rem;
+    padding: 3.5rem 3.5rem 5rem;
+    min-height: calc(100vh - 5rem);
+    box-sizing: border-box;
+}
+@media only screen and (max-width: 900px) {
+    #write { margin: 1rem auto 2rem; padding: 2.5rem 1.75rem 4rem; border-radius: var(--radius-md); }
+}
+#write .md-fences, #write pre.md-meta-block { background: var(--bg-secondary); }
+#write code { background: var(--accent-soft); }
+
+/* 外部链接：末尾一枚小箭头（claude.com 的 "Explore ↗"） */
+#write a[href^="http"]:not(:has(img))::after {
+    content: "\2197";
+    display: inline-block;
+    margin-left: 0.15em;
+    font-size: 0.7em;
+    line-height: 1;
+    vertical-align: 0.35em;
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color .15s ease, transform .15s ease;
+}
+#write a[href^="http"]:hover::after {
+    color: var(--accent-interactive);
+    transform: translate(1px, -1px);
+}
+
+/* 提示框（> [!NOTE] 等）：文档站 callout 的着色，取品牌辅色 */
+#write .md-alert {
+    border: 1px solid var(--alert-line);
+    border-left: 3px solid var(--alert-color);
+    border-radius: var(--radius-md);
+    background: var(--alert-bg);
+    padding: 0.85em 1.1em;
+    margin: 1.4em 0;
+    color: var(--fg-primary);
+}
+#write .md-alert > :last-child { margin-bottom: 0; }
+#write .md-alert .md-alert-text {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: var(--wt-semibold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--alert-color);
+}
+#write .md-alert.md-alert-note      { --alert-color: #3b6fa3; --alert-bg: rgba(106, 155, 204, 0.08); --alert-line: rgba(106, 155, 204, 0.30); }
+#write .md-alert.md-alert-tip       { --alert-color: #3f7566; --alert-bg: rgba(98, 153, 135, 0.10); --alert-line: rgba(98, 153, 135, 0.30); }
+#write .md-alert.md-alert-important { --alert-color: #5f5a9c; --alert-bg: rgba(130, 125, 189, 0.10); --alert-line: rgba(130, 125, 189, 0.30); }
+#write .md-alert.md-alert-warning   { --alert-color: #9a6700; --alert-bg: rgba(212, 162, 127, 0.16); --alert-line: rgba(212, 162, 127, 0.45); }
+#write .md-alert.md-alert-caution   { --alert-color: #a63d5f; --alert-bg: rgba(196, 102, 134, 0.10); --alert-line: rgba(196, 102, 134, 0.30); }
+#write .md-alert-text-note, #write .md-alert-text-tip, #write .md-alert-text-important,
+#write .md-alert-text-warning, #write .md-alert-text-caution { color: var(--alert-color); }
+
+/* YAML front matter：属性面板样式 */
+#write pre.md-meta-block {
+    position: relative;
+    padding: 1.6em 1em 0.85em;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    color: var(--fg-tertiary);
+}
+#write pre.md-meta-block::before {
+    content: "Properties";
+    position: absolute;
+    top: 0.5em;
+    left: 1em;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+}
+
+/* 侧栏：图标弱化、当前文件图标用 clay，交互带过渡 */
+.file-node-icon, .file-node-open-state { color: var(--fg-muted); }
+.file-library-node.active > .file-node-content .file-node-icon { color: var(--accent); }
+.file-node-content, .file-list-item, .outline-item, .dropdown-menu > li > a, .context-menu > li > a, .btn {
+    transition: background-color .12s ease, color .12s ease, box-shadow .12s ease;
+}
+
+/* 次级按钮：品牌的象牙色填充（anthropic.com secondary） */
+.btn-default {
+    background: var(--bg-fill);
+    box-shadow: none;
+    color: var(--fg-secondary);
+}
+.btn-default:hover { background: var(--ivory-300); color: var(--fg-primary); }
+
+/* 状态栏字数：胶囊 */
+#footer-word-count {
+    background: var(--bg-fill);
+    border-radius: 999px;
+    padding: 0 0.75em;
+}
+
+/* 专注模式：其余段落淡出 */
+.on-focus-mode #write > *:not(.md-focus) { opacity: 0.35; }
+.on-focus-mode #write > *:not(.md-focus):hover { opacity: 0.7; }
+
 /* ---------- 打印 ---------- */
 
 @media print {
     html { font-size: 12.5px; }
     body { background: #fff; }
-    #write { max-width: 100%; padding: 0; }
+    #write { max-width: 100%; padding: 0; margin: 0; box-shadow: none; border-radius: 0; min-height: 0; }
     #write pre, #write .md-fences { page-break-inside: avoid; word-wrap: break-word; }
     #write a { color: var(--fg-primary); text-decoration: none; }
+    #write a[href^="http"]::after { content: none; }
     #write .md-fences { background: var(--bg-secondary); }
     #write tbody tr:hover td { background: transparent; }
+    .on-focus-mode #write > * { opacity: 1; }
 }

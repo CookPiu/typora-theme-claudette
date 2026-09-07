@@ -15,6 +15,9 @@ Paper-toned background, a single terracotta accent, serif headings, sans-serif b
 - **Editorial typography** — serif headings at weight 400 with tight line-height; the first paragraph after an H1 is styled as a lead paragraph; H6 becomes a small uppercase label.
 - **Quiet code blocks** — soft `#f5f4ed` surface, hairline border, 12px radius, language pill in the corner, and the syntax palette used on claude.com's code panels (keyword `#c2452d`, string `#9c4a21`, number `#9a6700`, function `#6f42c1`, comment `#6e7781`).
 - **Hairline tables** — horizontal rules only, uppercase column headers, subtle row hover.
+- **Paper sheet** — the document sits on a white sheet with a hairline ring over the ivory page, the way academy.claude.com presents content. Delete the `#write` block under "锦上添花" to write directly on the page instead.
+- **Callouts** — `> [!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]` and `[!CAUTION]` are tinted with the brand's secondary swatches (sky, mineral, plum, kraft, fig) and get an uppercase label.
+- **Small touches** — external links end in a tiny ↗, YAML front matter renders as a "Properties" panel, focus mode dims everything but the current block.
 - **Whole-app styling** — sidebar, file tree, outline, quick-open, search panel, context menus, dialogs, buttons, source mode and scrollbars all follow the same palette and radii.
 - **Print-ready** — decorations and hover states are stripped when exporting to PDF.
 
