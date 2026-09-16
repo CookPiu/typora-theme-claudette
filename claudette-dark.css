@@ -97,14 +97,5 @@ html { color-scheme: dark; }
 .CodeMirror-linenumber { color: #6d6b67; }
 ::-webkit-scrollbar-thumb:hover { background: #6d6b67; }
 
-/* 打印仍用浅色 */
-@media print {
-    :root {
-        --bg-primary: #ffffff;
-        --bg-secondary: #f5f4ed;
-        --fg-primary: #141413;
-        --fg-secondary: #52514e;
-        --line: rgba(31, 30, 29, 0.12);
-    }
-    body { background: #fff; color: #141413; }
-}
+/* 打印沿用深色：底色取 --paper（见 claudette.css 的打印样式），
+   与 Typora 导出 PDF 时用 body 底色铺满的页边距一致 */

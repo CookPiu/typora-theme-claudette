@@ -860,6 +860,11 @@ footer.ty-footer {
 
 /* 纸张卡片：正文放在一张白纸上，页面底色为米色（academy th-paper / th-page） */
 content { background: var(--bg-primary); scroll-behavior: smooth; }
+/* Typora 导出 PDF 时取编辑器中 body 的背景色铺满整页（含页边距），并把它缓存后
+   以内联样式写回 body，故这里用 !important 让 body 保持纸张色；
+   米色交给 html 与 content 显示，编辑器外观不变 */
+html { background-color: var(--bg-primary); }
+body { background-color: var(--paper) !important; }
 #write {
     background: var(--paper);
     border-radius: var(--radius-lg);
@@ -969,8 +974,9 @@ content { background: var(--bg-primary); scroll-behavior: smooth; }
 /* ---------- 打印 ---------- */
 
 @media print {
-    html { font-size: 12.5px; }
-    body { background: #fff; }
+    /* 打印底色与纸张色一致（浅色为白、深色为深灰），与 Typora 用 body 底色铺的页边距相同 */
+    html { font-size: 12.5px; background: var(--paper) !important; }
+    body { background: var(--paper) !important; }
     #write { max-width: 100%; padding: 0; margin: 0; box-shadow: none; border-radius: 0; min-height: 0; }
     #write pre, #write .md-fences { page-break-inside: avoid; word-wrap: break-word; }
     #write a { color: var(--fg-primary); text-decoration: none; }
