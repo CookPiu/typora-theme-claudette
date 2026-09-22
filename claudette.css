@@ -270,11 +270,13 @@ body {
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-xs);
     background: var(--bg-elevated);
-    position: relative;
+    position: absolute;
     cursor: pointer;
-    vertical-align: top;
     transition: background .12s ease, border-color .12s ease;
 }
+/* Typora base.css 的 #write input[type=checkbox] 把宽高设为 inherit，优先级高于上一条，
+   会把去掉 appearance 的勾选框压成 0×0，这里用同等优先级写回尺寸 */
+#write .md-task-list-item > input { width: 1rem; height: 1rem; }
 .md-task-list-item > input:hover { border-color: var(--fg-tertiary); }
 .md-task-list-item > input:checked {
     background: var(--slate-950);
