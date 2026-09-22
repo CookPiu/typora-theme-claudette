@@ -865,6 +865,12 @@ content { background: var(--bg-primary); scroll-behavior: smooth; }
    米色交给 html 与 content 显示，编辑器外观不变 */
 html { background-color: var(--bg-primary); }
 body { background-color: var(--paper) !important; }
+/* Windows 标题栏（header）与固定大纲时的状态栏继承 body 背景，单独设回页面色；
+   状态栏在 1270px 以上由 window.css 设为透明，保持不变 */
+header { background-color: var(--bg-primary); }
+@media (min-width: 1000px) and (max-width: 1269.98px) {
+    .pin-outline footer.ty-footer { background-color: var(--bg-primary); }
+}
 #write {
     background: var(--paper);
     border-radius: var(--radius-lg);
