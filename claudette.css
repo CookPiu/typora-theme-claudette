@@ -436,7 +436,7 @@ body {
 
 /* ---------- 表格 ---------- */
 
-#write table {
+#write table:not(.md-grid-board) {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
@@ -444,14 +444,14 @@ body {
     font-size: 0.9375rem;
     font-variant-numeric: tabular-nums;
 }
-#write th, #write td {
+#write table:not(.md-grid-board) th, #write table:not(.md-grid-board) td {
     border: 0;
     border-bottom: 1px solid var(--line);
     padding: 0.7em 0.75em 0.7em 0;
     text-align: left;
     vertical-align: top;
 }
-#write th {
+#write table:not(.md-grid-board) th {
     font-family: var(--font-sans);
     font-size: 0.75rem;
     font-weight: var(--wt-medium);
@@ -462,8 +462,8 @@ body {
     border-bottom: 1px solid var(--line-strong);
     padding-bottom: 0.6em;
 }
-#write th:last-child, #write td:last-child { padding-right: 0; }
-#write tr:nth-child(2n) td { background: transparent; }
+#write table:not(.md-grid-board) th:last-child, #write table:not(.md-grid-board) td:last-child { padding-right: 0; }
+#write table:not(.md-grid-board) tr:nth-child(2n) td { background: transparent; }
 
 /* ---------- 图片 / 脚注 / 目录 ---------- */
 
@@ -805,16 +805,16 @@ footer.ty-footer {
 #write code { color: var(--code-string); background: var(--accent-soft); }
 
 /* 表格：表头淡底、行 hover、外框圆角 */
-#write table {
+#write table:not(.md-grid-board) {
     border: 1px solid var(--line);
     border-radius: var(--radius-sm);
     border-collapse: separate;
     overflow: hidden;
 }
-#write th, #write td { padding-left: 0.75em; padding-right: 0.75em; }
-#write th { background: var(--bg-secondary); border-bottom-color: var(--line); }
-#write tbody tr:last-child td { border-bottom: 0; }
-#write tbody tr:hover td { background: var(--line-2); }
+#write table:not(.md-grid-board) th, #write table:not(.md-grid-board) td { padding-left: 0.75em; padding-right: 0.75em; }
+#write table:not(.md-grid-board) th { background: var(--bg-secondary); border-bottom-color: var(--line); }
+#write table:not(.md-grid-board) tbody tr:last-child td { border-bottom: 0; }
+#write table:not(.md-grid-board) tbody tr:hover td { background: var(--line-2); }
 
 /* 图片：发丝边框 */
 #write img { box-shadow: 0 0 0 1px var(--line); }
@@ -990,6 +990,6 @@ header { background-color: var(--bg-primary); }
     #write a { color: var(--fg-primary); text-decoration: none; }
     #write a[href^="http"]::after { content: none; }
     #write .md-fences { background: var(--bg-secondary); }
-    #write tbody tr:hover td { background: transparent; }
+    #write table:not(.md-grid-board) tbody tr:hover td { background: transparent; }
     .on-focus-mode #write > * { opacity: 1; }
 }
