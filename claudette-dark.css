@@ -63,6 +63,8 @@
     --meta-content-color: var(--fg-muted);
     --heading-char-color: #5f5e5a;
     --md-char-color: #6d6b67;
+    --blur-text-color: #807e76;
+    --fg-label: var(--fg-tertiary);
     --mermaid-theme: dark;
 }
 

@@ -63,6 +63,7 @@
     --fg-secondary: var(--slate-650);
     --fg-tertiary: var(--slate-550);
     --fg-muted: var(--slate-500);
+    --fg-label: #696862;
     --line: rgba(31, 30, 29, 0.12);
     --line-2: rgba(31, 30, 29, 0.06);
     --line-strong: rgba(31, 30, 29, 0.22);
@@ -78,7 +79,7 @@
     --code-string: #9c4a21;
     --code-number: #9a6700;
     --code-fn: #6f42c1;
-    --code-comment: #6e7781;
+    --code-comment: #626b75;
     --code-type: #1f6fe5;
     --code-tag: #c2452d;
     --code-attr: #9a6700;
@@ -124,6 +125,7 @@
     --meta-content-color: var(--fg-muted);
     --heading-char-color: var(--slate-350);
     --md-char-color: var(--slate-400);
+    --blur-text-color: var(--fg-muted);
     --mermaid-theme: neutral;
 }
 
@@ -144,7 +146,7 @@ body {
     font-family: var(--font-sans);
     font-size: 1.0625rem;
     font-weight: var(--wt-regular);
-    line-height: 1.6;
+    line-height: 1.75;
     color: var(--fg-primary);
     background-color: var(--bg-primary);
     letter-spacing: 0;
@@ -181,10 +183,10 @@ body {
 #write h1 {
     font-size: 2.25rem;
     line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-top: 0;
+    margin-top: 1.75em;
     margin-bottom: 0.9em;
 }
+#write pre.md-meta-block + h1 { margin-top: 0.75em; }
 #write h2 { font-size: 1.75rem; line-height: 1.2; }
 #write h3 { font-size: 1.375rem; }
 #write h4 { font-size: 1.125rem; }
@@ -453,11 +455,11 @@ body {
 }
 #write table:not(.md-grid-board) th {
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: var(--wt-medium);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--fg-tertiary);
+    color: var(--fg-label);
     background: transparent;
     border-bottom: 1px solid var(--line-strong);
     padding-bottom: 0.6em;
@@ -544,8 +546,8 @@ sup.md-footnote {
 .file-node-content:hover .file-node-icon,
 .file-node-content:hover .file-node-open-state { visibility: visible; }
 .file-node-background { border-radius: var(--radius-sm); }
-.file-library-node:not(.active) > .file-node-content:hover + .file-node-background,
 .file-node-content:hover { background: transparent; }
+.file-library-node:not(.active) > .file-node-background:has(+ .file-node-content:hover) { background: var(--hover-fill); }
 .file-library-node.active > .file-node-background {
     background: var(--active-file-bg-color);
     border: 0;
@@ -677,7 +679,6 @@ footer.ty-footer {
 
 /* ---------- 专注 / 打字机模式 ---------- */
 
-.on-focus-mode #write > *:not(.md-focus) { transition: opacity .25s ease; }
 .on-focus-mode blockquote { border-left-color: var(--line); }
 
 /* ---------- 滚动条 ---------- */
@@ -755,7 +756,7 @@ footer.ty-footer {
 #write hr {
     position: relative;
     overflow: visible;
-    background: var(--line);
+    background: linear-gradient(to right, var(--line) calc(50% - 0.95rem), transparent calc(50% - 0.95rem), transparent calc(50% + 0.95rem), var(--line) calc(50% + 0.95rem));
 }
 #write hr::after {
     content: "\2733";
@@ -764,7 +765,6 @@ footer.ty-footer {
     top: 50%;
     transform: translate(-50%, -50%);
     padding: 0 0.75em;
-    background: var(--paper);
     color: var(--accent);
     font-size: 0.75rem;
     line-height: 1;
@@ -797,7 +797,7 @@ footer.ty-footer {
     padding: 0.15em 0.6em;
     border-radius: 999px;
     background: var(--bg-fill);
-    color: var(--fg-tertiary);
+    color: var(--fg-label);
 }
 
 /* 行内代码：字色微暖 */
@@ -831,7 +831,7 @@ footer.ty-footer {
     font-size: 0.6875rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--fg-muted);
+    color: var(--fg-label);
     margin-bottom: 0.5em;
 }
 
@@ -949,7 +949,7 @@ header { background-color: var(--bg-primary); }
     font-size: 0.6875rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--fg-muted);
+    color: var(--fg-label);
 }
 
 /* 侧栏：图标弱化、当前文件图标用 clay，交互带过渡 */
@@ -974,10 +974,6 @@ header { background-color: var(--bg-primary); }
     padding: 0 0.75em;
 }
 
-/* 专注模式：其余段落淡出 */
-.on-focus-mode #write > *:not(.md-focus):not(:has(.md-focus)) { opacity: 0.35; }
-.on-focus-mode #write > *:not(.md-focus):not(:has(.md-focus)):hover { opacity: 0.7; }
-
 /* ---------- 打印 ---------- */
 
 @media print {
@@ -990,5 +986,4 @@ header { background-color: var(--bg-primary); }
     #write a[href^="http"]:not(:has(img))::after { content: none; }
     #write .md-fences { background: var(--bg-secondary); }
     #write table:not(.md-grid-board) tbody tr:hover td { background: transparent; }
-    .on-focus-mode #write > * { opacity: 1 !important; }
 }
