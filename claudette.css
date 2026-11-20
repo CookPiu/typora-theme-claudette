@@ -462,7 +462,6 @@ body {
     border-bottom: 1px solid var(--line-strong);
     padding-bottom: 0.6em;
 }
-#write table:not(.md-grid-board) th:last-child, #write table:not(.md-grid-board) td:last-child { padding-right: 0; }
 #write table:not(.md-grid-board) tr:nth-child(2n) td { background: transparent; }
 
 /* ---------- 图片 / 脚注 / 目录 ---------- */
@@ -600,8 +599,8 @@ header, footer, .context-menu, .megamenu-content, .dropdown-menu,
     border-radius: 10px;
     color: var(--fg-primary);
 }
-#typora-quick-open-item { border-radius: var(--radius-sm); }
-#typora-quick-open-item.active, #typora-quick-open-item:hover { background: var(--hover-fill); }
+.typora-quick-open-item { border-radius: var(--radius-sm); }
+.typora-quick-open-item.active, .typora-quick-open-item:hover { background: var(--hover-fill); }
 
 #md-searchpanel {
     background: var(--bg-sidebar);
@@ -726,7 +725,7 @@ footer.ty-footer {
 }
 
 /* H3：前置一枚 clay 小圆点 */
-#write h3::before {
+#write h3:not(.md-focus)::before {
     content: "";
     display: inline-block;
     width: 0.32em;
@@ -976,8 +975,8 @@ header { background-color: var(--bg-primary); }
 }
 
 /* 专注模式：其余段落淡出 */
-.on-focus-mode #write > *:not(.md-focus) { opacity: 0.35; }
-.on-focus-mode #write > *:not(.md-focus):hover { opacity: 0.7; }
+.on-focus-mode #write > *:not(.md-focus):not(:has(.md-focus)) { opacity: 0.35; }
+.on-focus-mode #write > *:not(.md-focus):not(:has(.md-focus)):hover { opacity: 0.7; }
 
 /* ---------- 打印 ---------- */
 
@@ -988,8 +987,8 @@ header { background-color: var(--bg-primary); }
     #write { max-width: 100%; padding: 0; margin: 0; box-shadow: none; border-radius: 0; min-height: 0; }
     #write pre, #write .md-fences { page-break-inside: avoid; word-wrap: break-word; }
     #write a { color: var(--fg-primary); text-decoration: none; }
-    #write a[href^="http"]::after { content: none; }
+    #write a[href^="http"]:not(:has(img))::after { content: none; }
     #write .md-fences { background: var(--bg-secondary); }
     #write table:not(.md-grid-board) tbody tr:hover td { background: transparent; }
-    .on-focus-mode #write > * { opacity: 1; }
+    .on-focus-mode #write > * { opacity: 1 !important; }
 }
