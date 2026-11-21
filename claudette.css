@@ -103,7 +103,9 @@
     --font-mono: "JetBrains Mono", "Maple Mono NF CN", "Cascadia Code", "SF Mono", Consolas, monospace;
 
     /* Typora 内置变量 */
-    --bg-color: var(--bg-primary);
+    /* macOS 导出 PDF 时正文区域疑似取 --bg-color 铺底，这里取纸张色与页边距一致；
+       编辑器里的米色由 html、content 直接取 --bg-primary */
+    --bg-color: var(--paper);
     --side-bar-bg-color: var(--bg-sidebar);
     --text-color: var(--fg-primary);
     --select-text-bg-color: rgba(235, 201, 183, 0.55);
@@ -978,6 +980,7 @@ header { background-color: var(--bg-primary); }
 
 @media print {
     /* 打印底色与纸张色一致（浅色为白、深色为深灰），与 Typora 用 body 底色铺的页边距相同 */
+    :root { --bg-primary: var(--paper); --bg-color: var(--paper); }
     html { font-size: 12.5px; background: var(--paper) !important; }
     body { background: var(--paper) !important; }
     #write { max-width: 100%; padding: 0; margin: 0; box-shadow: none; border-radius: 0; min-height: 0; }

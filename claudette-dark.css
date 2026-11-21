@@ -46,7 +46,7 @@
     --shadow-menu: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 8px 24px rgba(0, 0, 0, 0.45);
     --shadow-dialog: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 16px 48px rgba(0, 0, 0, 0.6);
 
-    --bg-color: var(--bg-primary);
+    --bg-color: var(--paper);
     --side-bar-bg-color: var(--bg-sidebar);
     --text-color: var(--fg-primary);
     --select-text-bg-color: rgba(217, 119, 87, 0.35);
@@ -100,4 +100,8 @@ html { color-scheme: dark; }
 ::-webkit-scrollbar-thumb:hover { background: #6d6b67; }
 
 /* 打印沿用深色：底色取 --paper（见 claudette.css 的打印样式），
-   与 Typora 导出 PDF 时用 body 底色铺满的页边距一致 */
+   与 Typora 导出 PDF 时用 body 底色铺满的页边距一致；
+   本文件的 :root 在 claudette.css 之后，需在这里再覆盖一次页面色 */
+@media print {
+    :root { --bg-primary: var(--paper); }
+}
